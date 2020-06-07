@@ -1,0 +1,674 @@
+<section
+  ng-controller="testController as ctrl"
+  class="test_cls"
+  data-ng-init="fn_load()"
+>
+  <section>
+    <div
+      class="item"
+      style="text-align: center; top: 50px; padding-top: 0.1cm;"
+    >
+      <div class="btn-group btn-group-filter">
+        <button (click)="graphical()">
+          Graphical View</button
+        >&nbsp;&nbsp;
+        <button (click)="list()">
+          List View
+        </button>
+      </div>
+    </div>
+  </section>
+  <section [hidden]="graphicalview != true">
+    <div class="content">
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+          <div style="text-align: center;">
+            <span class="info-box-text" style="text-align: center;"
+              >Wind Meter</span
+            >
+            <canvas width="20" height="20" style="text-align: center;"></canvas
+            ><input
+              type="text"
+              class="knob"
+              data-thickness="0.2"
+              data-anglearc="250"
+              data-angleoffset="-125"
+              value="30"
+              data-width="70"
+              data-height="80"
+              data-fgcolor="#00c0ef"
+            />
+          </div>
+        </div>
+        <div class="info-box">
+          <span class="info-box-text" style="text-align: center;"
+            >Vapour Pitemsure</span
+          >
+          <div style="text-align: center;">
+            <canvas
+              width="20"
+              height="20"
+              style="width: 10px; height: 10px;"
+            ></canvas
+            ><input
+              type="text"
+              class="knob"
+              data-thickness="0.2"
+              data-anglearc="250"
+              data-angleoffset="-125"
+              value="30"
+              data-width="70"
+              data-height="80"
+              data-fgcolor="#00c0ef"
+              style="text-align: center;"
+            />
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+          <span class="info-box-text" style="text-align: center;"
+            >Wind Direction</span
+          >
+          <div>
+            <canvas width="70" height="70"></canvas
+            ><input
+              type="text"
+              class="knob"
+              value="80"
+              data-skin="tron"
+              data-thickness="0.2"
+              data-width="70"
+              data-height="80"
+              data-fgcolor="#3c8dbc"
+              data-readonly="true"
+              readonly="readonly"
+              style="position: absolute;"
+            />
+          </div>
+        </div>
+        <div class="info-box">
+          <span class="info-box-text" style="text-align: center;"
+            >Air Pitemsure</span
+          >
+          <div style="text-align: center;">
+            <canvas
+              width="20"
+              height="20"
+              style="width: 10px; height: 10px;"
+            ></canvas
+            ><input
+              type="text"
+              class="knob"
+              data-thickness="0.2"
+              data-anglearc="250"
+              data-angleoffset="-125"
+              value="30"
+              data-width="70"
+              data-height="80"
+              data-fgcolor="#00c0ef"
+              style="text-align: center;"
+            />
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+          <span class="info-box-text" style="text-align: center;"
+            >Air Temperature</span
+          >
+          <div style="text-align: center;">
+            <canvas
+              width="20"
+              height="20"
+              style="width: 10px; height: 10px;"
+            ></canvas
+            ><input
+              type="text"
+              class="knob"
+              data-thickness="0.2"
+              data-anglearc="250"
+              data-angleoffset="-125"
+              value="30"
+              data-width="70"
+              data-height="80"
+              data-fgcolor="#00c0ef"
+              style="text-align: center;"
+            />
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <div class="info-box">
+          <span class="info-box-text" style="text-align: center;"
+            >Relative Humidity</span
+          >
+          <div>
+            <canvas width="70" height="70"></canvas
+            ><input
+              type="text"
+              class="knob"
+              value="80"
+              data-skin="tron"
+              data-thickness="0.2"
+              data-width="70"
+              data-height="80"
+              data-fgcolor="#3c8dbc"
+              data-readonly="true"
+              readonly="readonly"
+              style="
+                width: 49px;
+                height: 30px;
+                position: absolute;
+                vertical-align: middle;
+                margin-top: 30px;
+                margin-left: -69px;
+                border: 0px;
+                background: none;
+                font: bold 18px Arial;
+                text-align: center;
+                color: rgb(60, 141, 188);
+                padding: 0px;
+                -webkit-appearance: none;
+              "
+            />
+          </div>
+
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <div class="box-body">
+            <a class="btn btn-block btn-social btn-dropbox">
+              <i class="fa fa-fw fa-sun-o"></i> Solar -
+            </a>
+            <a class="btn btn-block btn-social btn-dropbox">
+              <i class="fa fa-fw fa-soundcloud"></i> Rainfall -
+            </a>
+            <a class="btn btn-block btn-social btn-dropbox">
+              <i class="fa fa-fw fa-soundcloud"></i> Tb Rainfall -
+            </a>
+            <a class="btn btn-block btn-social btn-dropbox">
+              <i class="fa fa-fw fa-creative-commons"></i> Tb Count -
+            </a>
+            <a class="btn btn-block btn-social btn-dropbox">
+              <i class="fa fa-fw fa-creative-commons"></i> TZ -
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="box box-info">
+            <div class="box-body">
+              <span style="float: right;"
+                ><img
+                  src="./assets/images/expandchart.png"
+                  style="width: 12px; height: 12px;"
+                  class="fs-btn"
+                  data-toggle="modal"
+                  data-target="#modal-view-1"
+              /></span>
+              <div class="chart">
+                <canvas
+                  id="areaChart"
+                  style="height: 100px; width: 555px;"
+                  height="70"
+                  width="1110"
+                ></canvas>
+              </div>
+            </div>
+            <!-- /.box-body -->
+
+            <div class="box box-info">
+              <div class="box-body">
+                <span style="float: right;"
+                  ><img
+                    src="./assets/images/expandchart.png"
+                    style="width: 12px; height: 12px;"
+                    class="fs-btn"
+                    data-toggle="modal"
+                    data-target="#modal-view-2"
+                /></span>
+                <div class="chart">
+                  <canvas
+                    id="areaChart8"
+                    style="height: 100px; width: 555px;"
+                    height="70"
+                    width="1110"
+                  ></canvas>
+                </div>
+              </div>
+              <!-- /.box-body -->
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="box box-info">
+              <div class="box-body">
+                <span style="float: right;"
+                  ><img
+                    src="./assets/images/expandchart.png"
+                    style="width: 12px; height: 12px;"
+                    class="fs-btn"
+                    data-toggle="modal"
+                    data-target="#modal-view-3"
+                /></span>
+                <div class="chart">
+                  <canvas
+                    id="areaChart2"
+                    style="height: 100px; width: 555px;"
+                    height="70"
+                    width="1110"
+                  ></canvas>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box box-info">
+                <div class="box-body">
+                  <span style="float: right;"
+                    ><img
+                      src="./assets/images/expandchart.png"
+                      style="width: 12px; height: 12px;"
+                      class="fs-btn"
+                      data-toggle="modal"
+                      data-target="#modal-view-4"
+                  /></span>
+                  <div class="chart">
+                    <canvas
+                      id="areaChart16"
+                      style="height: 100px; width: 555px;"
+                      height="70"
+                      width="1110"
+                    ></canvas>
+                  </div>
+                </div>
+                <!-- /.box-body -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div
+    class="modal fade"
+    id="modal-view-1"
+    style="display: none;"
+    aria-hidden="true"
+  >
+    <div
+      class="modal-dialog"
+      role="document"
+      tabindex="1"
+      aria-labelledby="modal-view-title-1"
+      aria-hidden="true"
+      style="position: absolute; top: 108px; left: 360px;"
+    >
+      <div class="modal-content">
+        <div
+          class="modal-body"
+          style="height: 380px !important; width: 600px !important;"
+        >
+          <canvas
+            id="areaChart110"
+            style="height: 380px !important; width: 600px !important;"
+            height="360px"
+            width="600px"
+            class="chartjs-render-monitor"
+          ></canvas>
+
+          <div
+            id="myDIV5"
+            style="
+              color: white;
+              margin-top: 1em;
+              font-size: 1.5em;
+              text-align: center;
+            "
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal fade"
+    id="modal-view-2"
+    style="display: none;"
+    aria-hidden="true"
+  >
+    <div
+      class="modal-dialog"
+      role="document"
+      tabindex="1"
+      aria-labelledby="modal-view-title-1"
+      aria-hidden="true"
+      style="position: absolute; top: 158px; left: 360px;"
+    >
+      <div class="modal-content">
+        <div
+          class="modal-body"
+          style="height: 360px !important; width: 600px !important;"
+        >
+          <canvas
+            id="areaChart112"
+            style="height: 360px !important; width: 600px !important;"
+            height="360px"
+            width="600px"
+            class="chartjs-render-monitor"
+          ></canvas>
+
+          <div
+            id="myDIV5"
+            style="
+              color: white;
+              margin-top: 1em;
+              font-size: 1.5em;
+              text-align: center;
+            "
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal fade"
+    id="modal-view-3"
+    style="display: none;"
+    aria-hidden="true"
+  >
+    <div
+      class="modal-dialog"
+      role="document"
+      tabindex="1"
+      aria-labelledby="modal-view-title-1"
+      aria-hidden="true"
+      style="position: absolute; top: 158px; left: 360px;"
+    >
+      <div class="modal-content">
+        <div
+          class="modal-body"
+          style="height: 360px !important; width: 600px !important;"
+        >
+          <canvas
+            id="areaChart118"
+            style="height: 360px !important; width: 600px !important;"
+            height="360px"
+            width="600px"
+            class="chartjs-render-monitor"
+          ></canvas>
+
+          <div
+            id="myDIV5"
+            style="
+              color: white;
+              margin-top: 1em;
+              font-size: 1.5em;
+              text-align: center;
+            "
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal fade"
+    id="modal-view-4"
+    style="display: none;"
+    aria-hidden="true"
+  >
+    <div
+      class="modal-dialog"
+      role="document"
+      tabindex="1"
+      aria-labelledby="modal-view-title-1"
+      aria-hidden="true"
+      style="position: absolute; top: 158px; left: 360px;"
+    >
+      <div class="modal-content">
+        <div
+          class="modal-body"
+          style="height: 360px !important; width: 600px !important;"
+        >
+          <canvas
+            id="areaChart1116"
+            style="height: 360px !important; width: 600px !important;"
+            height="360px"
+            width="600px"
+            class="chartjs-render-monitor"
+          ></canvas>
+
+          <div
+            id="myDIV5"
+            style="
+              color: white;
+              margin-top: 1em;
+              font-size: 1.5em;
+              text-align: center;
+            "
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section [hidden]="listview != true">
+    <div></div>
+  </section>
+
+  <section>
+    <div [hidden]="listview != true">
+      <br />
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-body">
+            <div
+              id="example1_wrapper"
+              class="dataTables_wrapper form-inline dt-bootstrap"
+            >
+              <div class="row">
+                <div class="col-sm-12">
+                  <table
+                    id="example1"
+                    class="table table-bordered table-striped dataTable"
+                    role="grid"
+                    aria-describedby="example1_info"
+                  >
+                    <thead>
+                      <tr role="row" style="font-size: 13px;">
+                        <th
+                          class="sorting_asc"
+                          tabindex="0"
+                          aria-controls="example1"
+                          rowspan="1"
+                          colspan="1"
+                          aria-sort="ascending"
+                          aria-label="Rendering engine: activate to sort column descending"
+                          style="width: 168px;"
+                        >
+                          Timestamp
+                        </th>
+                        <th
+                          class="sorting"
+                          tabindex="0"
+                          aria-controls="example1"
+                          rowspan="1"
+                          colspan="1"
+                          aria-label="Browser: activate to sort column ascending"
+                          style="width: 208px;"
+                        >
+                          Tz
+                        </th>
+                        <th
+                          class="sorting"
+                          tabindex="0"
+                          aria-controls="example1"
+                          rowspan="1"
+                          colspan="1"
+                          aria-label="Platform(s): activate to sort column ascending"
+                          style="width: 184px;"
+                        >
+                          Solar(w/m2)
+                        </th>
+                        <th
+                          class="sorting"
+                          tabindex="0"
+                          aria-controls="example1"
+                          rowspan="1"
+                          colspan="1"
+                          aria-label="Engine version: activate to sort column ascending"
+                          style="width: 144px;"
+                        >
+                          Rainfall(mm)
+                        </th>
+                        <th
+                          class="sorting"
+                          tabindex="0"
+                          aria-controls="example1"
+                          rowspan="1"
+                          colspan="1"
+                          aria-label="CSS grade: activate to sort column ascending"
+                          style="width: 104px;"
+                        >
+                          Wind Speed(m/s)
+                        </th>
+                        <th
+                          class="sorting"
+                          tabindex="0"
+                          aria-controls="example1"
+                          rowspan="1"
+                          colspan="1"
+                          aria-label="CSS grade: activate to sort column ascending"
+                          style="width: 104px;"
+                        >
+                          Wind Dirn(Deg)
+                        </th>
+                        <th
+                          class="sorting"
+                          tabindex="0"
+                          aria-controls="example1"
+                          rowspan="1"
+                          colspan="1"
+                          aria-label="CSS grade: activate to sort column ascending"
+                          style="width: 104px;"
+                        >
+                          Air Temp(Deg)
+                        </th>
+                        <th
+                          class="sorting"
+                          tabindex="0"
+                          aria-controls="example1"
+                          rowspan="1"
+                          colspan="1"
+                          aria-label="CSS grade: activate to sort column ascending"
+                          style="width: 104px;"
+                        >
+                          Vapour Pitems(kpa)
+                        </th>
+                        <th
+                          class="sorting"
+                          tabindex="0"
+                          aria-controls="example1"
+                          rowspan="1"
+                          colspan="1"
+                          aria-label="CSS grade: activate to sort column ascending"
+                          style="width: 104px;"
+                        >
+                          Atm Pitems(kpa)
+                        </th>
+                        <th
+                          class="sorting"
+                          tabindex="0"
+                          aria-controls="example1"
+                          rowspan="1"
+                          colspan="1"
+                          aria-label="CSS grade: activate to sort column ascending"
+                          style="width: 104px;"
+                        >
+                          Rel Humid(%)
+                        </th>
+                        <th
+                          class="sorting"
+                          tabindex="0"
+                          aria-controls="example1"
+                          rowspan="1"
+                          colspan="1"
+                          aria-label="CSS grade: activate to sort column ascending"
+                          style="width: 104px;"
+                        >
+                          Tb Count
+                        </th>
+                        <th
+                          class="sorting"
+                          tabindex="0"
+                          aria-controls="example1"
+                          rowspan="1"
+                          colspan="1"
+                          aria-label="CSS grade: activate to sort column ascending"
+                          style="width: 104px;"
+                        >
+                          Tb Rainfall(mm)
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of coins">
+                        <td>{{ item.timing }}</td>
+                        <td>{{ item.tz }}</td>
+                        <td>{{ item.solar }}</td>
+                        <td>{{ item.rainfall }}</td>
+                        <td>{{ item.wind_speed }}</td>
+                        <td>{{ item.wind_direction }}</td>
+                        <td>{{ item.air_temperature }}</td>
+                        <td>{{ item.vapour_pressure }}</td>
+                        <td>{{ item.atm_pressure }}</td>
+                        <td>{{ item.relative_humidity }}</td>
+                        <td>{{ item.tb_count }}</td>
+                        <td>{{ item.tb_rainfall }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-5">
+                <div
+                  class="dataTables_info"
+                  id="example2_info"
+                  role="status"
+                  aria-live="polite"
+                >
+                  Showing {{ a }} to {{ b }}
+                </div>
+              </div>
+              <div style="position: absolute; right: 0cm;">
+                <button (click)="previous()" *ngIf="a >= 8">Previous</button
+                >&nbsp;&nbsp;
+                <button (click)="next()">Next</button>
+              </div>
+            </div>
+          </div>
+          <!-- /.box-body -->
+        </div>
+      </div>
+      <!--  <div *ngIf="myData?.length > 0">
+                    <div *ngFor="let item of myData">
+                      <td>{{item.timing}}</td>
+                      <td>{{item.tz}}</td>
+                      <td>{{item.solar}}</td>
+                      <td>{{item.rainfall}}</td>
+                      <td>{{item.wind_speed}}</td>
+                      <td>{{item.solar}}</td>
+                    </div>
+                  </div>-->
+    </div>
+  </section>
+</section>

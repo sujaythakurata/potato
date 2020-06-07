@@ -1,0 +1,179 @@
+<section>
+  <div class="column">
+    <br />
+    <div class="item" style="text-align: right;">
+      <div class="btn-group btn-group-filter">
+        <button (click)="graphical()">
+          Graphical View</button
+        >&nbsp;&nbsp;
+        <button (click)="list()">
+          List View
+        </button>
+      </div>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="float: right;">
+        <span>
+          Select Date Range &nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+        <input
+          type="date"
+          id="birthday"
+          name="birthday"
+        />&nbsp;&nbsp;&nbsp;&nbsp; to &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input
+          type="date"
+          id="birthday"
+          name="birthday"
+        />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span>
+    </div>
+  </div>
+</section>
+<section>
+  <div [hidden]="graphicalview != true">
+    <div class="column">
+      <div class="content">
+        <div class="box box-info">
+          <div class="box-body">
+            <div class="chart">
+              <canvas
+                id="areaChart"
+                style="height: 216px; width: 555px;"
+                height="90"
+                width="1110"
+              ></canvas>
+            </div>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <div class="box box-info">
+          <div class="box-body">
+            <div class="chart">
+              <canvas
+                id="areaChart2"
+                style="height: 216px; width: 555px;"
+                height="90"
+                width="1110"
+              ></canvas>
+            </div>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <div class="box box-info">
+          <div class="box-body">
+            <div class="chart">
+              <canvas
+                id="areaChart8"
+                style="height: 216px; width: 555px;"
+                height="90"
+                width="1110"
+              ></canvas>
+            </div>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <div class="box box-info">
+          <div class="box-body">
+            <div class="chart">
+              <canvas
+                id="areaChart16"
+                style="height: 216px; width: 555px;"
+                height="90"
+                width="1110"
+              ></canvas>
+            </div>
+          </div>
+          <!-- /.box-body -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div [hidden]="listview != true">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body no-padding">
+          <div class="chart-wrap">
+            <div class="table-responsive">
+              <br />
+              <table
+                #datatable=""
+                class="table table-striped custom-table no-margin"
+              >
+                <thead style="font-size: 12px;">
+                  <tr>
+                    <th>
+                      Timestamp
+                      <a class="sort-a"
+                        ><i class="fa fa-sort" aria-hidden="true"></i
+                      ></a>
+                    </th>
+                    <th>
+                      TZ<a class="sort-a"
+                        ><i class="fa fa-sort" aria-hidden="true"></i
+                      ></a>
+                    </th>
+                    <th>
+                      SOLAR (W/m2)<a class="sort-a"
+                        ><i class="fa fa-sort" aria-hidden="true"></i
+                      ></a>
+                    </th>
+                    <th>
+                      RAINFALL (mm)<a class="sort-a"
+                        ><i class="fa fa-sort" aria-hidden="true"></i
+                      ></a>
+                    </th>
+                    <th>
+                      WIND SPEED (m/s)<a class="sort-a"
+                        ><i class="fa fa-sort" aria-hidden="true"></i
+                      ></a>
+                    </th>
+                    <th>
+                      WIND DIRN (DEG)<a class="sort-a"
+                        ><i class="fa fa-sort" aria-hidden="true"></i
+                      ></a>
+                    </th>
+                    <th>
+                      AIR TEMP (DEG)<a class="sort-a"
+                        ><i class="fa fa-sort" aria-hidden="true"></i
+                      ></a>
+                    </th>
+                    <th>
+                      VAPOUR PRESS (kPa)<a class="sort-a"
+                        ><i class="fa fa-sort" aria-hidden="true"></i
+                      ></a>
+                    </th>
+                    <th>
+                      ATM PRESS (kPa)<a class="sort-a"
+                        ><i class="fa fa-sort" aria-hidden="true"></i
+                      ></a>
+                    </th>
+                    <th>
+                      REL HUMID (%)<a class="sort-a"
+                        ><i class="fa fa-sort" aria-hidden="true"></i
+                      ></a>
+                    </th>
+                    <th>
+                      TB COUNT<a class="sort-a"
+                        ><i class="fa fa-sort" aria-hidden="true"></i
+                      ></a>
+                    </th>
+                    <th>
+                      TB rainfall mm (mm)<a class="sort-a"
+                        ><i class="fa fa-sort" aria-hidden="true"></i
+                      ></a>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                 
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
