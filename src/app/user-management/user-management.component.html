@@ -3,51 +3,159 @@
   <div class="box-header">
     <h3 class="box-title">Users List</h3>
     <div class="box-tools add-user" style="margin-left: 1.5em;">
-      <button class="btn btn-primary" style="height: 2.2em">Add User</button>
-    </div>
-    <div class="box-tools" style="margin-left: 0;">
-      <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
-        <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-        <div class="input-group-btn">
-          <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-        </div>
-      </div>
+      <button  *ngIf="this.role == this.super_ || this.role == this.admin_?true:false" class="btn btn-primary" style="height: 2.2em" data-toggle="modal" data-target="#dev">Add User</button>
     </div>
   </div>
   <!-- /.box-header -->
-  <div class="box-body table-responsive no-padding">
-    <table class="table table-hover">
-      <tr>
+  <div class="box-body table-responsive no-padding" style="height: 73vh; overflow-y: scroll;">
+    <table class="table table-hover table-striped table-bordered">
+      <thead>
+        <tr>
         <th>ID</th>
+        <th>User ID</th>
         <th>User Name</th>
         <th>Email</th>
-        <th>Passworad</th>
         <th>Role</th>
+        <th *ngIf="this.user_role=='1'">Actions</th>
       </tr>
-      <tr>
-        <td>1</td>
-        <td>John Doe</td>
-        <td>sujaythakurata@gmail.com</td>
-        <td>test1234</td>
-        <td class="role"><img class="user" src="/assets/images/user.svg">Super Admin</td>
+      </thead>
+      <tr *ngFor="let data of this.data; let i = index" >
+        <td *ngIf="this.userid == data.id">{{i+1}}</td>
+        <td *ngIf="this.userid == data.id">{{data.id}}</td>
+        <td *ngIf="this.userid == data.id">{{data.user_name}}</td>
+        <td *ngIf="this.userid == data.id">{{data.email}}</td>
+        <td *ngIf="this.userid == data.id && data.role==1" ><img class="user" [src]="this.routebase+'assets/images/user.svg'"> Super Admin</td>
+        <td *ngIf="this.userid == data.id && data.role==2"><img class="user" [src]="this.routebase+'assets/images/user_b.svg'"> Admin</td>
+        <td *ngIf=" this.userid == data.id && data.role==3"><img class="user" [src]="this.routebase+'assets/images/user_s.svg'"> Normal</td>
       </tr>
-      <tr>
-        <td>2</td>
-        <td>John Doe</td>
-        <td>sujaythakurata@gmail.com</td>
-        <td>test1234</td>
-        <td class="role"><img class="user" src="/assets/images/user_s.svg">Normal</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>John Doe</td>
-        <td>sujaythakurata@gmail.com</td>
-        <td>test1234</td>
-        <td class="role"><img class="user" src="/assets/images/user_b.svg">Admin</td>
+      <tr *ngFor="let data of this.data; let i = index">
+        <td *ngIf="this.userid != data.id">{{i+1}}</td>
+        <td *ngIf="this.userid != data.id">{{data.id}}</td>
+        <td *ngIf="this.userid != data.id">{{data.user_name}}</td>
+        <td *ngIf="this.userid != data.id">{{data.email}}</td>
+        <td *ngIf="this.userid != data.id && data.role==1"><img class="user" [src]="this.routebase+'assets/images/user.svg'"> Super Admin</td>
+        <td *ngIf="this.userid != data.id && data.role==2"><img class="user" [src]="this.routebase+'assets/images/user_b.svg'"> Admin</td>
+        <td *ngIf="this.userid != data.id && data.role==3"><img class="user" [src]="this.routebase+'assets/images/user_s.svg'"> Normal</td>
+        <td *ngIf="this.userid != data.id && this.user_role==1">
+<!--           <button type="button" class="btn btn-success"
+            data-toggle="modal" data-target="#dev"
+            (click)="set(id_dev, name_dev, con_dev, lat_dev, long_dev, loc_dev, data)"
+          >
+            <span
+              class="fa fa-fw fa-edit"
+              style="width: 10px; height: 10px;"
+            ></span></button
+          >&nbsp; -->
+          <button type="button" class="btn btn-danger" (click)="delete(data.id)">
+            <span
+              class="fa fa-fw fa-trash"
+              style="width: 10px; height: 10px;"
+            ></span>
+          </button>
+        </td>
       </tr>
     </table>
   </div>
   <!-- /.box-body -->
   </div>
 </section>
+
+<div class="modal fade" id="dev">
+  <div class="modal-dialog" style="width: 400px; height: auto;">
+    <!-- Modal content-->
+    <div class="modal-content" style="width: 400px; height: auto;">
+      <div class="modal-header">
+        <button type="button" class="close" #ele data-dismiss="modal">
+          &times;
+        </button>
+        <h4 class="modal-title">Add User</h4>
+      </div>
+      <form class="modal-body" [formGroup]="user" (ngSubmit)="onsubmit(ele)">
+        <div class="row" style="margin:.5em;">
+          <div class="col">
+            <div class="form-group role-select" style="width: 10em; height: 2em; font-size: 1em">
+              <select class="form-control" formControlName="role" id="sel1" style="font-size:1em;" >
+                <option value='1'>Super Admin</option>
+                <option value='2'>Admin</option>
+                <option value='3'>Normal</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin:.5em;">
+          <div class="col">
+            <div class="form-group">
+              <label for="user">User Name </label>
+              <input
+                type="text"
+                formControlName="username"
+                id="user"
+                class='form-control'
+              >
+            </div>
+            <p class="text text-info">Minimum 3 Characters Required</p>
+            <div class="alert alert-danger"  *ngIf="this.user.controls.username.touched &&  this.user.controls.username.errors != this.null">
+             Minimum 3 Characters
+            </div>
+            <div class="alert alert-danger"  *ngIf="this.user.controls.username.touched && this.user.controls.username.errors != this.null && this.user.controls.username.errors.required">
+              User Name is required
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin:.5em;">
+          <div class="col">
+            <div class="form-group">
+              <label for="email">Email </label>
+              <input
+              type="text"
+              formControlName="email"
+              id="email"
+              class='form-control'
+              >
+            </div>
+            <div class="alert alert-danger"  *ngIf="this.user.controls.email.touched &&  this.user.controls.email.errors != this.null">
+             Enter a Valid Email
+            </div>
+            <div class="alert alert-danger"  *ngIf="this.user.controls.email.touched && this.user.controls.email.errors != this.null && this.user.controls.email.errors.required">
+              Email is required
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin:.5em;">
+          <div class="col">
+            <div class="form-group">
+              <label for="pass">Password </label>
+              <div class="input-group" style="display: flex;">
+                <input
+                [type]="this.type"
+                formControlName="password"
+                id="pass"
+                class='form-control'
+                >
+                <span style="height: 33px; width: 30px; border:1px solid grey;text-align: center; padding-top: 2px;border-radius: .1em;">
+                <i class="fa fa-eye-slash" *ngIf="this.type=='password'" aria-hidden="true" (click)="show()" style="cursor: pointer;"></i>
+                <i class="fa fa-eye" *ngIf="this.type=='text'" aria-hidden="true" (click)="show()" style="cursor: pointer;"></i></span>
+              </div>
+            </div>
+            <p class="text text-info">Minimum 8 Characters Required</p>
+            <div class="alert alert-danger"  *ngIf="this.user.controls.password.touched && this.user.controls.password.errors != this.null && this.user.controls.password.errors.required">
+              Password is required
+            </div>
+            <div class="alert alert-danger"  *ngIf="this.user.controls.password.touched &&  this.user.controls.password.errors != this.null">
+             Minimum 8 Characters
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin:.5em;">
+          <div class="col">
+            <div class="form-group" style="text-align: right;">
+              <button class="btn btn-primary" [disabled]="this.user.invalid" style="margin-left: auto; width: 6em;"
+              >Add</button>
+            </div> 
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

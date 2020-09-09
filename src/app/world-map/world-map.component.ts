@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import{Subscription} from "rxjs";
 import { Router } from '@angular/router';
+import {environment} from "../../environments/environment";
 
 declare var $: any;
 @Component({
@@ -15,7 +16,9 @@ export class WorldMapComponent implements OnInit, OnDestroy {
   public map:any;
   public flag:boolean = true;
   public sub:Subscription;
-
+  public header = {Authorization:`Bearer ${localStorage.getItem('token')}`};
+  public get_url = environment.api+"api/devicelist";
+  public routebase = environment.routebase;
   constructor(private http:HttpClient, private route:Router) { }
 
   ngOnInit() {
@@ -32,8 +35,8 @@ export class WorldMapComponent implements OnInit, OnDestroy {
         		fill: '#ffffff',
         		'fill-opacity': 1,
         		stroke: '#4775d1',
-        		'stroke-width': .5,
-        		'stroke-opacity': 1
+        		'stroke-width': .2,
+        		
       		},
       		hover : {
       			fill: "#0044cc",
@@ -50,7 +53,6 @@ export class WorldMapComponent implements OnInit, OnDestroy {
     	markers: [],
     	markerStyle:{
   			initial: {
-          image:"/assets/images/map-placeholder.svg",
   				fill:"#e6004c",
   				"fill-opacity": 1,
 			    "stroke-width": 2,
@@ -80,9 +82,10 @@ export class WorldMapComponent implements OnInit, OnDestroy {
   				'<b style="text-transform: capitalize">Id: '+this.data[code].device_id+'</b><br/>'
   			);
   		},
-  		onMarkerClick: function(e, code){
-  			console.log(e, code);
-  			location.href = "dashboard/graph1"
+  		onMarkerClick:(e, code, data)=>{
+        //let url = `/potato/dashboard/live/${this.data[code].device_id}`; 
+        let url = `${this.routebase}dashboard/live/${this.data[code].device_id}`;  
+  			location.href = url;
   		}
   	})
 
@@ -91,7 +94,7 @@ export class WorldMapComponent implements OnInit, OnDestroy {
 
 
 getdata(){
-  this.sub = this.http.get("http://localhost:3000/api/devicelist").subscribe(async(val:any)=>{
+  this.sub = this.http.get(this.get_url, {headers:this.header}).subscribe(async(val:any)=>{
     this.data =  [];
     for (let i = 0; i < val.length; ++i) {
       let obj = {
@@ -103,13 +106,23 @@ getdata(){
       this.data.push(obj);
 
     }
-    console.log(this.data);
+    
     var map = $('#world-map').vectorMap('get', 'mapObject');
     map.addMarkers(this.data, []);
     if(this.flag)
       setTimeout(()=>{this.getdata()}, 2000);
 
-  });
+  },
+  (err)=>{
+        alert(err["error"]["msg"]);
+        this.flag = false;
+        if(this.sub)
+          this.sub.unsubscribe();
+        localStorage.clear();
+        this.route.navigateByUrl('/login');
+
+  }
+  );
 }
 
   ngOnDestroy(){

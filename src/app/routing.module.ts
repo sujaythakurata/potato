@@ -13,21 +13,23 @@ import { HttpClientModule }    from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { WorldMapComponent } from './world-map/world-map.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+import {AuthService} from "./auth.service";
+import {RediretcService} from "./rediretc.service";
+
 const appRoutes: Routes = [
   {
-    path: 'dashboard', component: HeaderComponent, 
+    path: 'dashboard', component: HeaderComponent, canActivate:[AuthService],
     children: [
-      { path: 'home', component: HomeComponent },
-      { path: 'about', component: AboutComponent },
-      { path: 'graph1',component:Graphical18Component},
-      { path: 'graph2', component:Graphical26Component},
-      { path:'devicelists', component:DevicelistsComponent},
-      {path: "users", component:UserManagementComponent}
+      { path: 'home', component: HomeComponent, canActivate:[AuthService] },
+      { path: 'about', component: AboutComponent, canActivate:[AuthService] },
+      { path: 'live/:id',component:Graphical18Component, canActivate:[AuthService]},
+      { path: 'historical/:id', component:Graphical26Component, canActivate:[AuthService]},
+      { path:'devicelists', component:DevicelistsComponent,  canActivate:[AuthService]},
+      {path: "users", component:UserManagementComponent, canActivate:[AuthService]}
     ]
   },
-  { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
-  { path: '**', redirectTo: '/login', pathMatch: 'full' }
+  { path: 'login', component: LoginComponent, canActivate:[RediretcService] },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 

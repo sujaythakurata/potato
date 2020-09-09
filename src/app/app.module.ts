@@ -14,7 +14,7 @@ import { HttpModule } from '@angular/http';
 import { WorldMapComponent } from './world-map/world-map.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { RoutingModule } from './/routing.module';
-
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -25,7 +25,8 @@ import { RoutingModule } from './/routing.module';
     BrowserModule, 
     HttpClientModule,
     HttpModule,
-    RoutingModule
+    RoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
